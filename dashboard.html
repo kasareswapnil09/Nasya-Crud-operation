@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %} <!-- Add this line to load the static tag -->
+
+{% block content %}
+  <h2>Dashboard of College Students</h2>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+  <!-- Add Chart.js or other charting library code here to display statistics -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name of the Students</th>
+        <th>Marks</th>
+        <th>Actions</th>  <!-- New column for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for statistic in statistics %}
+        <tr>
+          <td>{{ statistic.title }}</td>
+          <td>{{ statistic.value }}</td>
+          <td>
+            <a href="{% url 'edit_statistic' statistic.id %}">Edit</a>
+            <a href="{% url 'delete_statistic' statistic.id %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'add_statistic' %}">Add Statistic</a>
+{% endblock %}

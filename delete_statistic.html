@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Delete Statistic</h2>
+  <p>Are you sure you want to delete "{{ statistic.title }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+  <a href="{% url 'dashboard' %}">Cancel</a>
+{% endblock %}
